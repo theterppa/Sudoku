@@ -1,0 +1,305 @@
+:root {
+  --light-gray: rgb(214, 214, 214);
+  --medium-gray: rgb(201, 201, 201);
+  --highlight-color: rgba(195, 229, 235, 0.5);
+  --error-color: rgb(255, 77, 0);
+  --selected-color: rgba(95, 150, 160, 0.5);
+  --tile-bg: rgb(246, 246, 246);
+  --text-color: rgba(27, 27, 27, 0.603);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+hr {
+  width: 500px;
+}
+
+#sudoku-board {
+  width: 450px;
+  height: 450px;
+  margin: 2px auto;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+#digits {
+  width: 450px;
+  height: 50px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+#sudoku-board.notes-active {
+  cursor: url("images/cursor.cur"), auto;
+}
+
+.tile,
+.number,
+.note-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  user-select: none; 
+}
+
+.tile {
+  width: 48px;
+  height: 50px;
+  border: 1px solid var(--medium-gray);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tile-start {
+  background-color: var(--tile-bg);
+}
+
+.number {
+  width: 44px;
+  height: 44px;
+  border: 1px solid black;
+  margin: 2px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.note-number {
+  width: 48px;
+  border: 1px solid var(--medium-gray);
+  color: var(--text-color);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tile-correct {
+  background-color: white;
+}
+
+.tile-selected {
+  background-color: var(--selected-color);
+}
+
+.tile-error {
+  background-color: var(--error-color);
+}
+
+
+
+.horizontal-line {
+  border-bottom: 1px solid black;
+}
+
+.vertical-line {
+  border-right: 1px solid black;
+}
+
+.highlight {
+  background-color: var(--highlight-color);
+}
+
+.highlight-numbers {
+  background-color: var(--selected-color);
+}
+
+.highlight-fixed {
+  background-color: rgba(152, 208, 219, 0.5);
+}
+
+.number-completed {
+  cursor: default;
+  color: grey;
+  border-color: grey;
+  pointer-events: none;
+}
+
+#flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  margin: 0 auto;
+}
+
+#imagButtons,
+#help,
+#notes-button,
+#solve-button {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  cursor: pointer;
+  user-select: none; 
+}
+
+#imagButtons {
+  align-items: flex-start;
+}
+
+#help {
+  top: 0;
+  right: -45px;
+}
+
+#notes-button {
+  top: 65px;
+  right: -45px;
+  border: 2px solid white;
+}
+
+#solve-button {
+  background-color: var(--light-gray);
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+  height: 9%;
+  width: 9%;
+  margin-top: 91%;
+  right: -45px;
+}
+
+#questionmark,
+#pen {
+  width: 45px;
+  height: 35px;
+}
+
+#help p,
+#notes-button p {
+  margin: 0;
+  margin-top: -1px;
+  font-size: 16px;
+}
+
+#popUpContainer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#popUpContent {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 99%;
+  max-height: 99%;
+  overflow: hidden;
+}
+
+#popUp {
+  width: 95%;
+  height: 95%;
+  max-width: 100%;
+  max-height: 100%;
+  transform-origin: center center;
+}
+
+#closePopUp {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: red;
+  z-index: 1001;
+}
+
+.modeButtons {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-family: "Arial", sans-serif;
+  font-size: 22px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border 0.3s ease;
+  margin-right: 10px;
+  user-select: none; 
+}
+
+.modeButtons:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.modeButtons:focus {
+  outline: none;
+  border-color: #888;
+}
+
+@media (max-width: 500px) {
+  #sudoku-board,
+  #digits {
+    width: 100%;
+  }
+
+  .tile,
+  .number,
+  .note-number {
+    width: calc(100% / 9 - 2px);
+    height: 40px;
+    font-size: 16px;
+  }
+
+  #help,
+  #notes-button,
+  #solve-button {
+    right: 0;
+  }
+}
+
+
+/* ChatGPT generated finiser class*/
+
+.finisher {
+  animation: glow 2s infinite;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(0, 255, 0, 1); }
+  100% { box-shadow: 0 0 5px rgba(0, 255, 0, 0.5); }
+}
+
+#congrats-message {
+  font-size: 24px;
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: rgba(0, 128, 0, 0.1);
+  border: 2px solid green;
+  border-radius: 10px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
